@@ -4,7 +4,7 @@
 # define is_no(__c) (__c >= '0' && __c <= '9')
 # define is_ident(__c) (__c >= 'a' && __c <= 'z')
 char fetchc(mulp __mul) {
-	return *__mul->cur;
+	return at_eof(__mul)?'\0':*__mul->cur;
 }
 
 mdl_u8_t is_space(char __c) {
@@ -27,7 +27,7 @@ char* read_ident(mulp __mul, mdl_u16_t *__len) {
 	return p;
 }
 
-# define BACK 30
+# define BACK 6
 bucketp static head = NULL;
 bucketp static back = NULL;
 mdl_uint_t static len = 0;
