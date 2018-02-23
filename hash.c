@@ -24,9 +24,9 @@ mdl_u64_t sum(mdl_u8_t const *__key, mdl_uint_t __len) {
 }
 
 void hash_init(hashp __table) {
-	__table->table = (entryp*)malloc(0xff*sizeof(entryp));
+	__table->table = (entryp*)malloc(0x100*sizeof(entryp));
 	entryp *cur = __table->table;
-	entryp *end = cur+0xff;
+	entryp *end = cur+0x100;
 	while(cur != end) *(cur++) = NULL;
 	__table->head = NULL;
 }
@@ -64,7 +64,6 @@ void* hash_get(hashp __table, mdl_u8_t const *__key, mdl_uint_t __len) {
 }
 
 void hash_free(hashp __table) {
-	return;
 	free(__table->table);
 
 	entryp cur = __table->head;

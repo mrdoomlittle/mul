@@ -26,7 +26,6 @@ typedef struct hash {
 typedef struct brick {
 	struct brick *next;
 	mdl_u8_t *p, *end;
-
 } *brickp;
 
 enum {

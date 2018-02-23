@@ -14,8 +14,8 @@ mdl_u8_t is_space(char __c) {
 char* read_ident(mulp __mul, mdl_u16_t *__len) {
 	char buf[1024];
 	char *bufp = buf;
-	while((fetchc(__mul) >= 'a' && fetchc(__mul) <= 'z') || fetchc(__mul) == '_') {
-		*(bufp++) = fetchc(__mul);
+	while((fetchc(__mul) >= 'a' && fetchc(__mul) <= 'z') || fetchc(__mul) == '_' || (fetchc(__mul) >= '0' && fetchc(__mul) <= '9')) {
+		*(bufp++) = *__mul->cur;
 		incrp(__mul);
 	}
 	*bufp = '\0';
@@ -27,7 +27,7 @@ char* read_ident(mulp __mul, mdl_u16_t *__len) {
 	return p;
 }
 
-# define BACK 20
+# define BACK 30
 bucketp static head = NULL;
 bucketp static back = NULL;
 mdl_uint_t static len = 0;
@@ -65,7 +65,7 @@ void lex(mulp __mul, bucketp *__tok) {
 	tok->beg = __mul->cur;
 
 	char c = fetchc(__mul);
-	if (is_ident(c)) {
+	if (is_ident(c) || c == '_') {
 		tok->sort = _ident;
 		tok->p = read_ident(__mul, &tok->len);
 	} else {

@@ -25,9 +25,9 @@ int main(int __argc, char const *__argv[]) {
 	mul_ld(&m, src);
 	mul_process(&m);
 
-	brickp a = get_brick(&m, "d");
-	char r = '2';
-	mul_brickw(&r, 4, 1, a);
+//rickp a = get_brick(&m, "id_3");
+//har r = '2';
+//ul_brickw(&r, 4, 1, a);
 
 	mul_oust(&m, dst);
 	mul_cleanup(&m);

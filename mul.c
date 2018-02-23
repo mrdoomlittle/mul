@@ -28,7 +28,7 @@ void mul_brickr(void *__buf, mdl_uint_t __off, mdl_uint_t __n, brickp __brc) {
 }
 
 mdl_u8_t at_eof(mulp __mul) {
-	return (__mul->cur>=__mul->end) && *__mul->cur != 0x0;
+	return (__mul->cur>=__mul->end) || *__mul->cur == '\0';
 }
 
 void mul_prepare(mulp __mul) {
@@ -140,6 +140,7 @@ void mul_cleanup(mulp __mul) {
 	}
 
 	hash_free(&__mul->bricks);	
+	
 	free(__mul->p);
 
 	void **p = tf;
